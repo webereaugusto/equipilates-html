@@ -196,6 +196,8 @@ body > * {
     display: flex;
     gap: 10px;
     align-items: center;
+    margin-left: auto;
+    margin-right: 30px;
 }
 
 .lang-btn {
@@ -231,6 +233,7 @@ body > * {
     justify-content: space-between;
     cursor: pointer;
     padding: 0;
+    flex-shrink: 0;
 }
 
 .nav-toggle span {
@@ -2815,10 +2818,21 @@ a, button, input, textarea, select {
         mix-blend-mode: normal !important;
         background: rgba(0, 0, 0, 0.9);
         backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-logo {
+        flex-shrink: 0;
     }
 
     .lang-switch {
-        gap: 8px;
+        gap: 6px;
+        margin-left: auto;
+        margin-right: 15px;
+        flex-shrink: 0;
     }
 
     .lang-btn {
@@ -2907,9 +2921,14 @@ a, button, input, textarea, select {
     .nav-menu.active a:nth-child(5) { transition-delay: 0.3s; }
     
     .nav-toggle {
-        display: flex;
+        display: flex !important;
         z-index: 10001;
         position: relative;
+        flex-shrink: 0;
+    }
+    
+    .nav-toggle span {
+        background: var(--white) !important;
     }
     
     .nav-toggle.active span:nth-child(1) {
