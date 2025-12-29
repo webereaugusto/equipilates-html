@@ -314,6 +314,40 @@ function initHeroSlider() {
                 cta1: { text: 'Ver Línea Contemporánea', link: '#contemporary' },
                 cta2: { text: 'Descargar Catálogo', link: buildWhatsAppLink('Hola! Quisiera recibir el catálogo de Equipilates (clásico y contemporáneo).') }
             }
+        ],
+        'de': [
+            {
+                number: '01',
+                tag: 'GLOBALE AUTORITÄT',
+                title: ['EQUIPILATES:', '18 JAHRE PILATES BEWEGEN'],
+                description: 'Über 30.000 Studios ausgestattet und internationale Präsenz.<br/>Die Wahl für alle, die Referenz sein wollen.',
+                cta1: { text: 'Angebot Anfordern', link: buildWhatsAppLink('Hallo, ich habe Equipilates über die Website gefunden und möchte ein Angebot für die Erweiterung/Modernisierung meines Studios.') },
+                cta2: { text: 'Unsere Geschichte', link: '#manifesto' }
+            },
+            {
+                number: '02',
+                tag: 'KLASSISCHE LINIE',
+                title: ['TOTALE TREUE', 'ZUM VERMÄCHTNIS VON JOSEPH PILATES'],
+                description: 'Geräte streng nach Originalmaßen entwickelt.<br/>Der Goldstandard für die klassische Methode.',
+                cta1: { text: 'Klassische Linie Sehen', link: '#classic' },
+                cta2: { text: 'Mit Berater Sprechen', link: buildWhatsAppLink('Hallo, ich möchte die Klassische Linie (Originalmaße) für mein Studio verstehen. Können Sie mich beraten?') }
+            },
+            {
+                number: '03',
+                tag: 'GESCHÄFT & ROI',
+                title: ['VERWANDELN SIE IHREN TRAUM', 'IN EIN ERFOLGREICHES GESCHÄFT'],
+                description: 'Margen von bis zu 62,7% zeigen, dass Pilates rentabel sein kann<br/>mit den richtigen Partnern. Starten Sie jetzt.',
+                cta1: { text: 'Mein Studio Planen', link: '#wizard' },
+                cta2: { text: 'Zahlungsbedingungen Sehen', link: buildWhatsAppLink('Hallo, ich möchte die Zahlungs-/Finanzierungsmöglichkeiten für Pilates-Geräte sehen.') }
+            },
+            {
+                number: '04',
+                tag: 'INNOVATION & GARANTIE',
+                title: ['EXZELLENZ UND INNOVATION', 'IN JEDER BEWEGUNG'],
+                description: 'Robustheit und fortschrittliches Design mit 2 Jahren Garantie.<br/>Bis zu 36 Raten direkt ab Werk.',
+                cta1: { text: 'Zeitgenössische Linie Sehen', link: '#contemporary' },
+                cta2: { text: 'Katalog Herunterladen', link: buildWhatsAppLink('Hallo! Ich möchte den Equipilates-Katalog erhalten (klassisch und zeitgenössisch).') }
+            }
         ]
     };
 
@@ -497,6 +531,53 @@ function initHeroSlider() {
             'contact.phoneHint': 'Equipo comercial',
             'contact.primaryCta': 'Hablar por WhatsApp',
             'contact.secondaryCta': 'O usa el Wizard arriba y envía todo organizado.'
+        },
+        'de': {
+            'nav.home': 'Start',
+            'nav.manifesto': 'Manifest',
+            'nav.classic': 'Klassisch',
+            'nav.contemporary': 'Zeitgenössisch',
+            'nav.contact': 'Kontakt',
+            'hero.trustLine': 'Seit 2006 • Fabrik in Resende-RJ • Präsenz in 15+ Ländern',
+            'manifesto.kicker': 'EQUIPILATES',
+            'manifesto.title': 'Ihr Studio verdient Geräte, die Wachstum unterstützen',
+            'manifesto.body': 'Wer ein Studio betreibt, weiß: "Billig" wird zu Wartung, unterbrochenen Stunden und unzufriedenen Kunden. Equipilates gibt es, um dieses Risiko zu beseitigen — mit eigener Fabrik, Qualitätsstandards und einem Vertriebsteam, das Ihnen bei der richtigen Auswahl hilft.',
+            'wizard.kicker': 'PLANEN SIE IHR UPGRADE',
+            'wizard.title': 'In 2 Minuten ein empfohlenes Kit für Ihren Raum erhalten',
+            'wizard.subtitle': 'Beantworten Sie 3 kurze Fragen und erhalten Sie einen ersten Vorschlag. Wenn es passt, sprechen Sie mit einem Berater.',
+            'wizard.q1.label': 'Raumgröße',
+            'wizard.q1.placeholder': 'Bereich auswählen',
+            'wizard.q1.opt1': 'Bis 25m²',
+            'wizard.q1.opt2': '25–40m²',
+            'wizard.q1.opt3': '40–70m²',
+            'wizard.q1.opt4': '70m²+',
+            'wizard.q2.label': 'Upgrade-Ziel',
+            'wizard.q2.placeholder': 'Ziel auswählen',
+            'wizard.q2.opt1': 'Kapazität erhöhen (mehr Kunden/Termine)',
+            'wizard.q2.opt2': 'Geräte ersetzen und Wartung reduzieren',
+            'wizard.q2.opt3': 'Fokus auf Rehabilitation/Physio',
+            'wizard.q2.opt4': 'Auf zeitgenössische Linie umsteigen',
+            'wizard.q3.label': 'Aktuelle Geräte (optional)',
+            'wizard.q3.placeholder': 'Z.B.: Reformer + Cadillac (oder aktuelle Marke)',
+            'wizard.q3.hint': 'Wenn Sie es nicht wissen, kein Problem — schreiben Sie "weiß nicht".',
+            'wizard.primaryCta': 'Empfehlung sehen & WhatsApp',
+            'wizard.secondaryCta': 'Per E-Mail senden',
+            'wizard.trust': 'Tipp: Gut geführte Studios können Margen von bis zu 62,7% erreichen. Wir helfen Ihnen, das richtige Upgrade zu planen.',
+            'wizard.lead.name': 'Name',
+            'wizard.lead.namePh': 'Ihr Name',
+            'wizard.lead.email': 'E-Mail',
+            'wizard.lead.emailPh': 'sie@beispiel.com',
+            'wizard.lead.send': 'An das Team senden',
+            'wizard.lead.note': 'Öffnet Ihr E-Mail-Programm mit der fertigen Nachricht.',
+            'contact.kicker': 'KONTAKT',
+            'contact.title': 'Bereit, den nächsten Schritt für Ihr Studio zu planen?',
+            'contact.body': 'Sprechen Sie mit einem Berater und erhalten Sie Beratung zu Linie, Kit und Layout für Ihren Raum.',
+            'contact.addrTitle': 'Adresse',
+            'contact.emailTitle': 'E-Mail',
+            'contact.phoneTitle': 'WhatsApp',
+            'contact.phoneHint': 'Vertriebsteam',
+            'contact.primaryCta': 'Auf WhatsApp chatten',
+            'contact.secondaryCta': 'Oder nutzen Sie den Wizard oben und senden Sie alles organisiert.'
         }
     };
     
