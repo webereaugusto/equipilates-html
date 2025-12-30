@@ -16,6 +16,7 @@ function initElasticAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                observer.unobserve(entry.target);
             }
         });
     }, {
@@ -37,6 +38,7 @@ function initFigmaMotion() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
             }
         });
     }, {
@@ -89,6 +91,7 @@ function initFigmaMotion() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
+                statsObserver.unobserve(entry.target);
             }
         });
     }, {
@@ -189,7 +192,52 @@ document.addEventListener('DOMContentLoaded', () => {
     initFigmaMotion();
     initParallax();
     initSmoothScrollMomentum();
+    initModernRevealAnimations();
 });
+
+// ==========================================
+// MODERN REVEAL ANIMATIONS (Section 2)
+// ==========================================
+function initModernRevealAnimations() {
+    // Observer for slide-up animations
+    const slideUpElements = document.querySelectorAll('.anim-slide-up');
+    const popElements = document.querySelectorAll('.anim-pop');
+    const imageFadeContainers = document.querySelectorAll('.image-fade-container');
+    
+    const slideUpObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                slideUpObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    slideUpElements.forEach(el => slideUpObserver.observe(el));
+    popElements.forEach(el => slideUpObserver.observe(el));
+    
+    // Observer for image fade animation
+    const imageFadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger the fade animation on the wrapper
+                const wrapper = entry.target.querySelector('.image-fade-wrapper');
+                if (wrapper) {
+                    wrapper.classList.add('revealed');
+                }
+                imageFadeObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    imageFadeContainers.forEach(el => imageFadeObserver.observe(el));
+}
 
 // ==========================================
 // HERO AUTO SLIDER WITH FADE
@@ -1250,9 +1298,26 @@ function initNavigation() {
         }
     });
     
+    // Function to update nav background based on scroll position
+    function updateNavBackground() {
+        const currentScroll = window.pageYOffset || window.scrollY;
+        const hero = document.querySelector('.hero');
+        const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
+        
+        // Add/remove scrolled class based on hero section (80% of hero height)
+        if (currentScroll > heroHeight * 0.8) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }
+    
     // Hide nav on scroll down, show on scroll up
+    // Add background when scrolled past hero section
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+        const currentScroll = window.pageYOffset || window.scrollY;
+        
+        updateNavBackground();
         
         if (currentScroll > lastScroll && currentScroll > 500) {
             nav.classList.add('hidden');
@@ -1265,7 +1330,24 @@ function initNavigation() {
         }
         
         lastScroll = currentScroll;
-    });
+    }, { passive: true });
+    
+    // Update nav background after smooth scroll (for anchor links)
+    window.addEventListener('scrollend', updateNavBackground);
+    
+    // Fallback: check periodically after smooth scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            updateNavBackground();
+        }, 100);
+    }, { passive: true });
+    
+    // Check on page load
+    setTimeout(() => {
+        updateNavBackground();
+    }, 100);
 }
 
 // ==========================================
@@ -1416,6 +1498,8 @@ function initStickyScroll() {
                 // Animate split chars
                 const splitChars = entry.target.querySelectorAll('.split-chars');
                 splitChars.forEach(el => animateSplitChars(el));
+                
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.3 });
@@ -1560,6 +1644,7 @@ function initInnovationCards() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.2 });
@@ -1679,7 +1764,8 @@ const fadeElements = document.querySelectorAll('.fade-in');
 
 const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+            entry.target.dataset.animated = 'true';
             entry.target.style.opacity = '0';
             entry.target.style.transform = 'translateY(30px)';
             entry.target.style.transition = 'all 1s cubic-bezier(0.75, 0, 0.27, 1)';

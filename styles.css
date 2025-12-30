@@ -103,8 +103,20 @@ body > * {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    mix-blend-mode: difference;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
     transition: all 0.6s cubic-bezier(0.75, 0, 0.27, 1);
+}
+
+.nav.scrolled {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
 .nav.hidden {
@@ -2902,13 +2914,19 @@ a, button, input, textarea, select {
 @media (max-width: 1024px) {
     .nav {
         padding: 20px 30px;
-        mix-blend-mode: normal !important;
-        background: rgba(0, 0, 0, 0.9);
-        backdrop-filter: blur(10px);
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
+    }
+    
+    .nav.scrolled {
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
     
     .nav-logo {
@@ -3368,6 +3386,12 @@ a, button, input, textarea, select {
     height: auto;
     border-radius: 20px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+/* Remove border-radius for images that already have it in the artwork */
+.image-fade-wrapper img {
+    border-radius: 0;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.12);
 }
 
 .image-badge {
@@ -4013,5 +4037,117 @@ a, button, input, textarea, select {
     .highlight-box {
         flex-direction: column;
         gap: 15px;
+    }
+}
+
+/* ==========================================
+   MODERN REVEAL ANIMATIONS
+   ========================================== */
+
+/* Slide Up Animation */
+.anim-slide-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.anim-slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation Delays */
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.3s; }
+.anim-delay-4 { transition-delay: 0.4s; }
+.anim-delay-5 { transition-delay: 0.5s; }
+
+/* Pop Animation */
+.anim-pop {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: 0.6s;
+}
+
+.anim-pop.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Image Fade Container - Simple elegant animation */
+.image-fade-container {
+    position: relative;
+    overflow: visible;
+}
+
+.image-fade-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-fade-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    transition: opacity 0.8s ease-in, transform 0.9s ease-out;
+}
+
+.image-fade-wrapper.revealed img {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Light Sweep Effect */
+.image-light-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 45%,
+        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0.25) 55%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.image-fade-wrapper.revealed .image-light-sweep {
+    animation: lightSweep 1.2s ease-in-out 0.5s forwards;
+}
+
+@keyframes lightSweep {
+    0% {
+        left: -100%;
+        opacity: 1;
+    }
+    100% {
+        left: 150%;
+        opacity: 0;
+    }
+}
+
+/* Floating Badge Animation */
+.image-fade-container .image-badge {
+    animation: floatBadge 3s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes floatBadge {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
     }
 }
