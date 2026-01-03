@@ -4597,48 +4597,23 @@ a, button, input, textarea, select {
 .core-values-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
-.core-values-grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-.core-values-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.core-values-badges .badge {
-    display: inline-block;
-    font-family: 'Sora', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    background: rgba(255, 148, 63, 0.1);
-    border: 1px solid rgba(255, 148, 63, 0.3);
-    padding: 8px 14px;
-    white-space: nowrap;
+    gap: 40px;
 }
 
 .core-value-item h3 {
     font-family: 'Sora', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .core-value-item p {
     font-family: 'Sora', sans-serif;
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.7;
     color: #666;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .btn-core-value {
@@ -4690,46 +4665,26 @@ a, button, input, textarea, select {
     }
     
     .core-values-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         margin-bottom: 25px;
     }
     
     .core-values-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .core-values-grid-4 {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        gap: 25px;
     }
     
     .core-value-item h3 {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     
     .core-value-item p {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     
     .core-values-content .section-label {
         font-size: 10px;
         padding: 6px 14px;
-    }
-    
-    .core-values-badges {
-        gap: 8px;
-    }
-    
-    .core-values-badges .badge {
-        font-size: 0.7rem;
-        padding: 6px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .core-values-grid-4 {
-        grid-template-columns: 1fr;
     }
 }
 
