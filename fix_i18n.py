@@ -13,7 +13,7 @@ const I18N = {
         'hero.trustLine': 'Desde 2006 - Fabrica em Resende-RJ - Presenca em 15+ paises',
         'hero.scrollHint': 'Role para explorar',
         'wire.label': 'QUEM E A EQUIPILATES?',
-        'wire.title': 'Referencia em Equipamentos de Pilates de alta performance. Elevamos o padrao tecnico do seu estudio.',
+        'wire.title': 'Referência em Equipamentos de Pilates de alta performance. Elevamos o padrão técnico do seu estúdio.',
         'wire.classicTitle': 'Equipamentos de Pilates - Linha Classica',
         'wire.classicText': 'Fidelidade absoluta ao metodo original de Joseph Pilates. Nossa linha classica utiliza medidas exatas e molas calibradas para garantir a biomecanica pura, ideal para estudios que priorizam a tradicao e resultados tecnicos.',
         'wire.contempTitle': 'Equipamentos de Pilates - Linha Contemporanea',
