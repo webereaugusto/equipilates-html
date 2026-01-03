@@ -3609,12 +3609,47 @@ a, button, input, textarea, select {
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 100px;
 }
 
 .classica-carousel {
     overflow: hidden;
     position: relative;
+}
+
+/* Setas nas Laterais */
+.classica-prev,
+.classica-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid rgba(255, 148, 63, 0.5);
+    color: var(--caramel);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.classica-prev {
+    left: 0;
+}
+
+.classica-next {
+    right: 0;
+}
+
+.classica-prev:hover,
+.classica-next:hover {
+    background: var(--caramel);
+    border-color: var(--caramel);
+    color: #000;
+    transform: translateY(-50%) scale(1.1);
 }
 
 .classica-carousel-track {
@@ -3676,34 +3711,12 @@ a, button, input, textarea, select {
     margin: 0;
 }
 
-/* Controles do Carrossel */
+/* Controles do Carrossel - Dots */
 .classica-carousel-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
     margin-top: 50px;
-}
-
-.classica-prev,
-.classica-next {
-    width: 56px;
-    height: 56px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.classica-prev:hover,
-.classica-next:hover {
-    background: var(--caramel);
-    border-color: var(--caramel);
-    color: #000;
 }
 
 .classica-dots {
@@ -3790,7 +3803,13 @@ a, button, input, textarea, select {
     }
     
     .classica-carousel-wrapper {
-        padding: 0 40px;
+        padding: 0 80px;
+    }
+    
+    .classica-prev,
+    .classica-next {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -3805,7 +3824,7 @@ a, button, input, textarea, select {
     }
     
     .classica-carousel-wrapper {
-        padding: 0 20px;
+        padding: 0 60px;
     }
     
     .classica-slide-img {
@@ -3814,8 +3833,14 @@ a, button, input, textarea, select {
     
     .classica-prev,
     .classica-next {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+    }
+    
+    .classica-prev svg,
+    .classica-next svg {
+        width: 18px;
+        height: 18px;
     }
     
     .btn-linha-classica {
