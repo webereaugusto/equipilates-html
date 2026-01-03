@@ -1339,7 +1339,11 @@ function initCounters() {
         const target = parseInt(counter.getAttribute('data-target'));
         const suffix = counter.dataset.suffix || '';
         const separator = counter.dataset.separator || '';
-        const duration = 2000;
+        const duration = 1500;
+        
+        // Start from 85% of target - only count last few numbers
+        const startValue = Math.floor(target * 0.85);
+        const range = target - startValue;
         const startTime = performance.now();
         
         const formatNumber = (num) => {
@@ -1349,13 +1353,16 @@ function initCounters() {
             return num.toString();
         };
         
+        // Show start value immediately
+        counter.textContent = formatNumber(startValue) + suffix;
+        
         const update = (currentTime) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             
-            // Easing function for smooth animation
+            // Easing function for smooth finish
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentValue = Math.floor(easeOutQuart * target);
+            const currentValue = Math.floor(startValue + (easeOutQuart * range));
             
             counter.textContent = formatNumber(currentValue) + suffix;
             
