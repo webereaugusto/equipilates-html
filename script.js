@@ -350,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGalleryFilters();
     initClassicaCarousel();
     initContemporaneaCarousel();
+    initTestimonialsCarousel();
 });
 
 // ==========================================
@@ -1760,3 +1761,129 @@ if (window.location.search.includes('debug')) {
         section.appendChild(label);
     });
 }
+
+// ==========================================
+// CARROSSEL DE DEPOIMENTOS
+// ==========================================
+function initTestimonialsCarousel() {
+    const wrapper = document.querySelector('.testimonials-carousel-wrapper');
+    if (!wrapper) return;
+    
+    const carousel = wrapper.querySelector('.testimonials-carousel');
+    const slides = wrapper.querySelectorAll('.testimonial-slide');
+    const prevBtn = wrapper.querySelector('.testimonials-prev');
+    const nextBtn = wrapper.querySelector('.testimonials-next');
+    const dotsContainer = wrapper.querySelector('.testimonials-dots');
+    
+    if (!carousel || slides.length === 0) return;
+    
+    let currentIndex = 0;
+    let autoplayInterval;
+    const autoplayDelay = 5000; // 5 segundos entre slides
+    
+    // Criar dots de navegação
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', `Ir para depoimento ${index + 1}`);
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+    }
+    
+    // Atualizar posição do carrossel
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carousel.style.transform = `translateX(${offset}%)`;
+        
+        // Atualizar dots
+        const dots = dotsContainer.querySelectorAll('button');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Ir para slide específico
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+        resetAutoplay();
+    }
+    
+    // Slide anterior
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+        resetAutoplay();
+    }
+    
+    // Próximo slide
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+        resetAutoplay();
+    }
+    
+    // Autoplay
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            nextSlide();
+        }, autoplayDelay);
+    }
+    
+    // Resetar autoplay
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+    
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    
+    // Pausar autoplay ao passar o mouse
+    wrapper.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+    });
+    
+    // Retomar autoplay ao sair o mouse
+    wrapper.addEventListener('mouseleave', () => {
+        startAutoplay();
+    });
+    
+    // Suporte para navegação por teclado
+    wrapper.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+    });
+    
+    // Suporte para swipe em dispositivos touch
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchStartX - touchEndX > swipeThreshold) {
+            nextSlide();
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            prevSlide();
+        }
+    }
+    
+    // Inicializar
+    createDots();
+    updateCarousel();
+    startAutoplay();
+}
+
