@@ -1542,6 +1542,8 @@ body > * {
     height: 50px;
     width: auto;
     margin-bottom: 8px;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
 }
 
 .footer-brand p {
@@ -8506,6 +8508,7 @@ a, button, input, textarea, select {
     
     .footer-logo {
         height: 45px;
+        object-fit: contain;
     }
     
     .footer-links {
