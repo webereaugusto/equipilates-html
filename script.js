@@ -1763,26 +1763,168 @@ if (window.location.search.includes('debug')) {
 }
 
 // ==========================================
-// CARROSSEL TESTIMONIALS INFINITE LOOP
+// CARROSSEL TESTIMONIALS SOCIAL STYLE
 // ==========================================
 function initTestimonialsSocialCarousel() {
-    const wrapper = document.querySelector('.testimonials-infinite-wrapper');
+    const wrapper = document.querySelector('.testimonials-social-wrapper');
     if (!wrapper) return;
     
-    const track = wrapper.querySelector('.testimonials-infinite-track');
+    const track = wrapper.querySelector('.testimonials-social-track');
     const cards = wrapper.querySelectorAll('.testimonial-social-card');
+    const prevBtn = wrapper.querySelector('.testimonials-social-prev');
+    const nextBtn = wrapper.querySelector('.testimonials-social-next');
+    const dotsContainer = document.querySelector('.testimonials-social-dots');
     
     if (!track || cards.length === 0) return;
     
-    // Duplicar os cards para criar o efeito de loop infinito
-    // Duplicamos 2 vezes para garantir que sempre haja cards suficientes
-    const cardsArray = Array.from(cards);
-    cardsArray.forEach(card => {
-        const clone = card.cloneNode(true);
-        track.appendChild(clone);
+    let currentIndex = 0;
+    let cardsPerView = 3;
+    let cardWidth = 0;
+    let maxIndex = 0;
+    let autoplayInterval;
+    const autoplayDelay = 5000;
+    
+    // Calcular cards por visualização baseado na tela
+    function calculateCardsPerView() {
+        if (window.innerWidth >= 1024) {
+            cardsPerView = 3;
+        } else if (window.innerWidth >= 768) {
+            cardsPerView = 2;
+        } else {
+            cardsPerView = 1;
+        }
+        maxIndex = Math.max(0, cards.length - cardsPerView);
+    }
+    
+    // Calcular largura do card
+    function calculateCardWidth() {
+        const gap = 30;
+        const wrapperPadding = 160; // 80px de cada lado
+        const containerWidth = wrapper.offsetWidth - wrapperPadding;
+        cardWidth = (containerWidth - (gap * (cardsPerView - 1))) / cardsPerView;
+        
+        // Aplicar largura aos cards
+        cards.forEach(card => {
+            card.style.width = `${cardWidth}px`;
+        });
+    }
+    
+    // Criar dots
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        const totalDots = maxIndex + 1;
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', `Ir para depoimento ${i + 1}`);
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+    
+    // Atualizar dots
+    function updateDots() {
+        const dots = dotsContainer.querySelectorAll('button');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Ir para slide específico
+    function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        const gap = 30;
+        const offset = currentIndex * (cardWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+    }
+    
+    // Próximo slide
+    function nextSlide() {
+        if (currentIndex < maxIndex) {
+            goToSlide(currentIndex + 1);
+        } else {
+            goToSlide(0);
+        }
+    }
+    
+    // Slide anterior
+    function prevSlide() {
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        } else {
+            goToSlide(maxIndex);
+        }
+    }
+    
+    // Autoplay
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, autoplayDelay);
+    }
+    
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+    
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoplay();
+            startAutoplay();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoplay();
+            startAutoplay();
+        });
+    }
+    
+    // Pausar autoplay no hover
+    wrapper.addEventListener('mouseenter', stopAutoplay);
+    wrapper.addEventListener('mouseleave', startAutoplay);
+    
+    // Touch/Swipe para mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoplay();
+    }, { passive: true });
+    
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        startAutoplay();
+    }, { passive: true });
+    
+    // Resize handler
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            calculateCardsPerView();
+            calculateCardWidth();
+            createDots();
+            goToSlide(Math.min(currentIndex, maxIndex));
+        }, 250);
     });
     
-    // A animação CSS cuida do resto!
-    // O hover pausa a animação automaticamente via CSS
+    // Inicialização
+    calculateCardsPerView();
+    calculateCardWidth();
+    createDots();
+    startAutoplay();
 }
 

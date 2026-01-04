@@ -7268,36 +7268,24 @@ a, button, input, textarea, select {
     color: var(--caramel);
 }
 
-/* Wrapper para loop infinito */
-.testimonials-infinite-wrapper {
+/* Wrapper do Carrossel */
+.testimonials-social-wrapper {
+    position: relative;
     width: 100%;
     overflow: hidden;
-    position: relative;
+    padding: 0 80px; /* Espaço para os controles */
 }
 
-/* Track com animação infinita */
-.testimonials-infinite-track {
+/* Track do Carrossel */
+.testimonials-social-track {
     display: flex;
     gap: 30px;
-    animation: scrollInfinite 40s linear infinite;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
 }
 
-.testimonials-infinite-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scrollInfinite {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
 .testimonial-social-card {
-    flex: 0 0 400px; /* Largura fixa para os cards */
+    flex: 0 0 auto; /* Largura será calculada dinamicamente */
     background: #ffffff;
     border-radius: 16px;
     padding: 0;
@@ -7387,30 +7375,96 @@ a, button, input, textarea, select {
     font-weight: 500;
 }
 
-/* Responsivo Testimonials Infinite */
-@media (max-width: 1200px) {
-    .testimonial-social-card {
-        flex: 0 0 380px;
-    }
+/* Controles do Carrossel */
+.testimonials-social-prev,
+.testimonials-social-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    color: var(--caramel);
+    border: 2px solid var(--caramel);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(255, 148, 63, 0.2);
 }
 
-@media (max-width: 992px) {
-    .section-testimonials-social {
-        padding: 80px 0;
-    }
-    
-    .testimonial-social-card {
-        flex: 0 0 350px;
+.testimonials-social-prev:hover,
+.testimonials-social-next:hover {
+    background: var(--caramel);
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 148, 63, 0.4);
+}
+
+.testimonials-social-prev {
+    left: 10px;
+}
+
+.testimonials-social-next {
+    right: 10px;
+}
+
+/* Dots de Navegação */
+.testimonials-social-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 50px;
+    padding: 20px 0;
+    min-height: 52px;
+}
+
+.testimonials-social-dots button {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 148, 63, 0.3);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.testimonials-social-dots button.active {
+    background: var(--caramel);
+    transform: scale(1.3);
+}
+
+.testimonials-social-dots button:hover:not(.active) {
+    background: rgba(255, 148, 63, 0.6);
+    transform: scale(1.2);
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    .testimonials-social-wrapper {
+        padding: 0 70px;
     }
 }
 
 @media (max-width: 768px) {
+    .section-testimonials-social {
+        padding: 80px 0;
+    }
+    
     .testimonials-social-header {
         margin-bottom: 50px;
     }
     
-    .testimonial-social-card {
-        flex: 0 0 320px;
+    .testimonials-social-wrapper {
+        padding: 0 60px;
     }
     
     .social-card-body p {
@@ -7425,8 +7479,11 @@ a, button, input, textarea, select {
         font-size: 12px;
     }
     
-    .testimonials-infinite-track {
-        animation-duration: 30s; /* Mais rápido em mobile */
+    .testimonials-social-prev,
+    .testimonials-social-next {
+        width: 45px;
+        height: 45px;
+        font-size: 28px;
     }
 }
 
@@ -7435,8 +7492,8 @@ a, button, input, textarea, select {
         padding: 60px 0;
     }
     
-    .testimonial-social-card {
-        flex: 0 0 280px;
+    .testimonials-social-wrapper {
+        padding: 0 50px;
     }
     
     .social-card-header,
@@ -7450,9 +7507,21 @@ a, button, input, textarea, select {
         line-height: 1.6;
     }
     
-    .testimonials-infinite-track {
-        animation-duration: 25s; /* Ainda mais rápido em telas pequenas */
-        gap: 20px;
+    .testimonials-social-prev,
+    .testimonials-social-next {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+    
+    .testimonials-social-dots {
+        margin-top: 35px;
+        gap: 10px;
+    }
+    
+    .testimonials-social-dots button {
+        width: 10px;
+        height: 10px;
     }
 }
 
