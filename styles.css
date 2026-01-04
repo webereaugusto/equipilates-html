@@ -7273,7 +7273,7 @@ a, button, input, textarea, select {
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding: 0 80px; /* Espaço para os controles */
+    padding: 0; /* Sem espaço lateral - sem controles */
 }
 
 /* Track do Carrossel */

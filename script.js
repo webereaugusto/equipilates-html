@@ -1771,8 +1771,6 @@ function initTestimonialsSocialCarousel() {
     
     const track = wrapper.querySelector('.testimonials-social-track');
     const cards = wrapper.querySelectorAll('.testimonial-social-card');
-    const prevBtn = wrapper.querySelector('.testimonials-social-prev');
-    const nextBtn = wrapper.querySelector('.testimonials-social-next');
     const dotsContainer = document.querySelector('.testimonials-social-dots');
     
     if (!track || cards.length === 0) return;
@@ -1799,8 +1797,7 @@ function initTestimonialsSocialCarousel() {
     // Calcular largura do card
     function calculateCardWidth() {
         const gap = 30;
-        const wrapperPadding = 160; // 80px de cada lado
-        const containerWidth = wrapper.offsetWidth - wrapperPadding;
+        const containerWidth = wrapper.offsetWidth;
         cardWidth = (containerWidth - (gap * (cardsPerView - 1))) / cardsPerView;
         
         // Aplicar largura aos cards
@@ -1864,23 +1861,6 @@ function initTestimonialsSocialCarousel() {
     
     function stopAutoplay() {
         clearInterval(autoplayInterval);
-    }
-    
-    // Event listeners
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            stopAutoplay();
-            startAutoplay();
-        });
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            stopAutoplay();
-            startAutoplay();
-        });
     }
     
     // Pausar autoplay no hover
