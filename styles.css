@@ -1517,8 +1517,9 @@ body > * {
 
 /* Footer Clean */
 .footer-clean {
-    background: var(--gray-100);
+    background: var(--black);
     padding: 80px 40px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-container {
@@ -1528,7 +1529,7 @@ body > * {
     grid-template-columns: 1.5fr 2fr;
     gap: 80px;
     padding-bottom: 60px;
-    border-bottom: 1px solid var(--gray-300);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-brand {
@@ -1538,14 +1539,14 @@ body > * {
 }
 
 .footer-logo {
-    height: 40px;
+    height: 50px;
     width: auto;
     margin-bottom: 8px;
 }
 
 .footer-brand p {
     font-size: 14px;
-    color: var(--gray-600);
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.6;
 }
 
@@ -1562,23 +1563,24 @@ body > * {
 }
 
 .footer-group h5 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--black);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
     margin-bottom: 8px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .footer-group a {
     font-size: 15px;
-    color: var(--gray-600);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .footer-group a:hover {
-    color: var(--caramel);
+    color: var(--accent);
+    padding-left: 5px;
 }
 
 .footer-bottom-clean {
@@ -1590,7 +1592,7 @@ body > * {
 
 .footer-bottom-clean p {
     font-size: 13px;
-    color: var(--gray-600);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* ==========================================
@@ -8489,6 +8491,30 @@ a, button, input, textarea, select {
     
     .cta-footer-item {
         text-align: center;
+    }
+    
+    /* Footer Mobile */
+    .footer-clean {
+        padding: 60px 20px 30px;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+    
+    .footer-logo {
+        height: 45px;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-bottom-clean {
+        padding-top: 24px;
     }
     
     .origin-container {
