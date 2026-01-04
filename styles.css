@@ -1536,6 +1536,7 @@ body > * {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    align-items: flex-start;
 }
 
 .footer-logo {
@@ -1544,12 +1545,14 @@ body > * {
     margin-bottom: 8px;
     filter: brightness(0) invert(1);
     object-fit: contain;
+    display: block;
 }
 
 .footer-brand p {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.6;
+    text-align: left;
 }
 
 .footer-links {
