@@ -6736,6 +6736,12 @@ a, button, input, textarea, select {
     box-shadow: 0 30px 60px rgba(0,0,0,0.15);
 }
 
+/* Remove border-radius for square images */
+.split-image-square img {
+    border-radius: 0;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
 /* Remove border-radius for images that already have it in the artwork */
 .image-fade-wrapper img {
     border-radius: 0;
