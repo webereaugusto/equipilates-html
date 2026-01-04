@@ -8230,6 +8230,32 @@ a, button, input, textarea, select {
     font-weight: 700;
     color: var(--white);
     margin-bottom: 15px;
+    user-select: none;
+}
+
+.cta-contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cta-contact-info:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 111, 0, 0.3);
+}
+
+.cta-contact-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    padding: 4px 0;
+    user-select: text;
+    cursor: text;
+    line-height: 1.6;
 }
 
 .cta-card-number,
@@ -8474,6 +8500,15 @@ a, button, input, textarea, select {
     
     .cta-card-title {
         font-size: 22px;
+    }
+    
+    .cta-contact-info {
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .cta-contact-text {
+        font-size: 16px;
     }
     
     .cta-card-number,
