@@ -7375,45 +7375,6 @@ a, button, input, textarea, select {
     font-weight: 500;
 }
 
-/* Controles do Carrossel */
-.testimonials-social-prev,
-.testimonials-social-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #ffffff;
-    color: var(--caramel);
-    border: 2px solid var(--caramel);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 32px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(255, 148, 63, 0.2);
-}
-
-.testimonials-social-prev:hover,
-.testimonials-social-next:hover {
-    background: var(--caramel);
-    color: #ffffff;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 20px rgba(255, 148, 63, 0.4);
-}
-
-.testimonials-social-prev {
-    left: 10px;
-}
-
-.testimonials-social-next {
-    right: 10px;
-}
-
 /* Dots de Navegação */
 .testimonials-social-dots {
     display: flex;
@@ -7448,12 +7409,6 @@ a, button, input, textarea, select {
 }
 
 /* Responsivo */
-@media (max-width: 1024px) {
-    .testimonials-social-wrapper {
-        padding: 0 70px;
-    }
-}
-
 @media (max-width: 768px) {
     .section-testimonials-social {
         padding: 80px 0;
@@ -7461,10 +7416,6 @@ a, button, input, textarea, select {
     
     .testimonials-social-header {
         margin-bottom: 50px;
-    }
-    
-    .testimonials-social-wrapper {
-        padding: 0 60px;
     }
     
     .social-card-body p {
